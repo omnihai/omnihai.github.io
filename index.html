@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>OmniHai</title>
+        <meta name="description" content="OmniHai - A unified Java AI utility library for Jakarta EE or MicroProfile applications">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <style>
+            body {
+                max-width: 800px;
+                margin: 2rem auto;
+                padding: 0 1rem;
+            }
+            pre code.hljs {
+                padding: 0;
+            }
+        </style>
+        <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+        <link rel="shortcut icon" href="favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+        <link rel="manifest" href="site.webmanifest" />
+        <link rel="canonical" href="https://omnihai.org/" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="OmniHai" />
+        <meta property="og:description" content="OmniHai - A unified Java AI utility library for Jakarta EE or MicroProfile applications" />
+        <meta property="og:url" content="https://omnihai.org/" />
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "name": "OmniHai",
+                "description": "OmniHai - A unified Java AI utility library for Jakarta EE or MicroProfile applications",
+                "url":"https://omnihai.org/",
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "OmniFaces"
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div id="readme" class="markdown-body">
+            <h1>OmniHai</h1>
+            <p id="status">Loading README...</p>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>
+            marked.setOptions({
+                highlight: function(code, language) {
+                    if (language && hljs.getLanguage(language)) {
+                        return hljs.highlight(code, { language: language }).value;
+                    }
+                    else {
+                        return hljs.highlightAuto(code).value;
+                    }
+                }
+            });
+
+            const readmeUrl = 'https://raw.githubusercontent.com/omnifaces/omnihai/develop/README.md';
+
+            fetch(readmeUrl).then(response => {
+                if (!response.ok) {
+                    throw new Error('response status was not ok');
+                }
+                return response.text();
+            }).then(text => {
+                document.getElementById('readme').innerHTML = marked.parse(text);
+                document.querySelectorAll('#readme pre code').forEach(block => hljs.highlightElement(block));
+            }).catch(error => {
+                document.getElementById('status').innerHTML = `<span style="color:#c00;">Error loading README: ${error.message}</span>`;
+            });
+        </script>
+    </body>
+</html>
